@@ -1,0 +1,1 @@
+print(str(input()).strip().replace(" ", "0").count("0")+1)
