@@ -1,7 +1,6 @@
-Case = int(input())
-num_list = list(map(int, input().split()))
-result = 0
-for i in num_list:
+num_list = int(input())
+result = []
+for i in range(num_list):
     cnt = 0
     if i == 1:
         continue
@@ -9,5 +8,5 @@ for i in num_list:
         if i % j == 0:
             cnt += 1
     if cnt == 1:
-        result += 1
+        result.append(i)
 print(result)
