@@ -1,4 +1,18 @@
 num = int(input())
+room = 1
+result = 0
+if num == 1:
+    print(1)
+else:
+    while True:
+        if num <= room:
+            break
+        room += 6 * result
+        result += 1
+    print(result)
+
+""" 차선책
+num = int(input())
 plus = 0
 start = 1
 room = 1
@@ -11,7 +25,7 @@ else:
         room += 1
         if num <= start:
             print(room)
-            break
+            break"""
 
 """ 시간 초과
 num = int(input())

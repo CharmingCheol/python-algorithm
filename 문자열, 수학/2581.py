@@ -1,15 +1,13 @@
-arr = []
-for i in range(int(input()), int(input()) + 1):
-    count = 0
-    for j in range(2, i + 1):
-        if 2 == count:
-            break
-        if i % j == 0:
-            count += 1
-    if count == 1:
-        arr.append(i)
-if len(arr) == 0:
-    print(-1)
-else:
-    print(sum(arr))
-    print(min(arr))
+arr = [False,False] + [True] * 100
+for i in range(2, len(arr)):
+    if arr[i]:
+        for j in range(2 * i, len(arr), i):
+            arr[j] = False
+MIN = int(input())
+MAX = int(input())
+result = []
+for num in range(MIN, MAX+1):
+    if arr[num]:
+        result.append(num)
+print(sum(result))
+print(min(result))
