@@ -1,21 +1,9 @@
 import sys
-
-stack = []
-
-
-def push(aa):
-    stack.append(aa)
-
-
-def pop():
-    stack.pop()
-
-
-read = sys.stdin.readline()
-for i in range(int(read)):
-    num = int(sys.stdin.readline())
+arr = []
+for _ in range(int(sys.stdin.readline())):
+    num = int(sys.stdin.readline().strip())
     if num == 0:
-        pop()
+        arr.pop()
     else:
-        push(num)
-print(sum(stack))
+        arr.append(num)
+print(sum(arr))
