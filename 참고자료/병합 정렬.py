@@ -1,37 +1,31 @@
-def merge(arr, first, middle, last):
-    tmp = []
-    i, j = first, middle + 1
+def merge(left, right):
+    result = []
+    while len(left) > 0 or len(right) > 0:
+        if len(left) > 0 and len(right) > 0:
+            if left[0] <= right[0]:
+                result.append(left[0])
+                left = left[1:]
+            else:
+                result.append(right[0])
+                right = right[1:]
+        elif len(left) > 0:
+            result.append(left[0])
+            left = left[1:]
+        elif len(right) > 0:
+            result.append(right[0])
+            right = right[1:]
+    return result
 
-    while i <= middle and j <= last:
-        if arr[i] <= arr[j]:
-            tmp.append(arr[i])
-            i += 1
-        else:
-            tmp.append(arr[j])
-            j += 1
-
-    while i <= middle:
-        tmp.append(arr[i])
-        i += 1
-    while j <= last:
-        tmp.append(arr[j])
-        j += 1
-
-    for x in tmp:
-        arr[first] = x;
-        first += 1
-
-def merge_sort(arr, first, last):
-    if first < last:
-        middle = (first + last) // 2
-        merge_sort(arr, first, middle)
-        merge_sort(arr, middle + 1, last)
-        merge(arr, first, middle, last)
-
-def m_sort(arr, size):
-    merge_sort(arr, 0, size - 1)
-    return arr
+def merge_sort(data):
+    if len(data) <= 1:
+        return data
+    mid = len(data) // 2
+    left = data[:mid]
+    right = data[mid:]
+    left = merge_sort(left)
+    right = merge_sort(right)
+    return merge(left, right)
 
 data_list = [8, 5, 9, 3, 1, 6, 7, 2, 4]
 print(data_list)
-print(m_sort(data_list, len(data_list)))
+print(merge_sort(data_list))
