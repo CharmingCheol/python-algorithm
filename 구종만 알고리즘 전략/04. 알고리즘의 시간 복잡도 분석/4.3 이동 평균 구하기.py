@@ -7,3 +7,4 @@ for i in range(month-1, len(A)): # month가 5일 경우 4번째~배열의 길이
         partialSum += A[i - j]  # A[4] + A[3] + A[2] + A[1] + A[0] // A[5] + A[4] + A[3] + A[2] + A[1]
     ret.append(partialSum / month)
 print(ret)
+
