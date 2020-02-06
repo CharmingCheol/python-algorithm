@@ -1,5 +1,5 @@
 def pow(A, m):
-    # 기저 사례 : 제곱 수가 1이면 배열의 크기를 return
+    # 기저 사례 : 제곱 수가 0이면 배열의 크기를 return
     if m == 0:
         return A
     # 제곱 수를 2로 나눌 때 0이 아닐 경우
@@ -11,4 +11,4 @@ def pow(A, m):
     return half * half
 
 # 첫번째 값은 배열의 크기(5x5 = 25), 두번째 값은 배열의 제곱 수((5x5)^2 = 625)
-print(pow(4, 4))
+print(pow(5, 2))
