@@ -1,3 +1,4 @@
+# 동적 프로그래밍
 n = int(input())  # 반복 횟수
 t = []  # 상담 소요일
 p = []  # 상담 금액
@@ -20,11 +21,37 @@ for i in range(n - 1, -1, -1):  # 6부터 시작해서 0까지 역순으로 진�
         # dp[i + 1] = 0, p[i] + dp[i + t[i]] = 15 + 0
         # i가 3일 경우
         # dp[i + 1] = 15, p[i] + dp[i + t[i]] = 20 + 15
-        print(i)
-        print(dp[i + 1])
-        print(p[i] + dp[i + t[i]])
         dp[i] = max(dp[i + 1], p[i] + dp[i + t[i]])
 print(dp[0])
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# 브루트 포스 방식
+from sys import stdin
+
+
+def money(day, total):
+    global ans
+    if day >= quitDay:
+        # ans 값 갱신
+        ans = max(ans, total)
+        return
+    if day + T[day] <= quitDay:
+        # 일을 했을 경우
+        money(day + T[day], total + P[day])
+    # 다음날 이동
+    money(day + 1, total)
+
+
+quitDay = int(stdin.readline())
+T, P = [], []
+ans = 0
+for i in range(quitDay):
+    t, p = map(int, stdin.readline().split())
+    T.append(t)
+    P.append(p)
+money(0, 0)
+print(ans)
 
 """
 https://pacific-ocean.tistory.com/199

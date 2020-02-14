@@ -9,6 +9,7 @@ m = int(sys.stdin.readline())
 
 areFriends = np.array([[False] * 10] * 10)
 
+
 def countParing(taken):
     # 짝을 찾은 인덱스 계산을 위한 변수 선언
     firstFree = -1
@@ -43,3 +44,10 @@ for i in range(m):
     # (a, b), (b, a)는 같은 경우이므로, 둘다 true로 선언
     areFriends[friend1][friend2] = areFriends[friend2][friend1] = True
 print(countParing(taken))
+
+"""
+2 1
+0 1
+4 6
+0 1 / 1 2 / 2 3 / 3 0 / 0 2 / 1 3
+"""
