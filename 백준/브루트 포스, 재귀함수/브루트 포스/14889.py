@@ -31,6 +31,7 @@ def start_link(start, link, index, toPick):
     global start_, link_, result
     if toPick == 0:
         # link 배열 값 추가
+        print(start)
         for i in team:
             if not i in start:
                 link.append(i)
