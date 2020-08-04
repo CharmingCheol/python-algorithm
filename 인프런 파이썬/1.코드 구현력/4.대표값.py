@@ -1,16 +1,16 @@
 from sys import stdin
 
-size = int(stdin.readline())
+students = int(stdin.readline())
 scores = list(map(int, stdin.readline().split()))
-average = round(sum(scores) / size)
+average = round(sum(scores) / students)
 
-current_score = scores[0]
-current_index = 0
+student_score = scores[0]
+student_index = 0
 for (index, value) in enumerate(scores):
-    if abs(average - current_score) > abs(average - value):
-        current_score = value
-        current_index = index
-    if abs(average - current_score) >= abs(average - value) and current_score < value:
-        current_score = value
-        current_index = index
-print(average, current_index + 1)
+    if abs(average - student_score) > abs(average - value):
+        student_score = value
+        student_index = index
+    if abs(average - student_score) >= abs(average - value) and student_score < value:
+        student_score = value
+        student_index = index
+print(average, student_index + 1)
