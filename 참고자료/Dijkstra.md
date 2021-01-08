@@ -69,41 +69,51 @@ print(distance)
 
 #### 두번째 코드(nlogn)
 ```python
-mycountry = {
-    "A": {"B": 8, "C": 1, "D": 2},
-    "B": {},
-    "C": {"B": 5, "D": 2},
-    "D": {"E": 3, "F": 5},
-    "E": {"F": 1},
-    "F": {"A": 5},
-}
+import sys
+import heapq
 
+def dijkstra(departure):
+    # 현재 지점 0으로 초기화
+    dp[departure] = 0
 
-def dijkstra(road, start):
-    # 최초에 inf로 초기화
-    country = {node: float("inf") for node in road}
-    # 시작점을 0으로 갱신
-    country[start] = 0
-    # 시작점 인덱스, 시작점을 heap 배열에 추가
+    # 현재 위치, 현재 가중치를 heap 배열에 추가
     heap = []
-    heapq.heappush(heap, [country[start], start])
+    heapq.heappush(heap, [departure, 0])
 
     while heap:
-        now_distance, now_position = heapq.heappop(heap)
+        now_position, now_weight = heapq.heappop(heap)
         # 최단 거리가 아닌 경우 continue
-        if country[now_position] < now_distance:
+        if dp[now_position] < now_weight:
             continue
-        # 현재 노드의 인접 노드를 탐색
-        for arrival, weight in road[now_position].items():
-            distance = now_distance + weight  # 선택된 노드를 거쳐서 인접 노드로 가는 비용
-            # 기존 최소 비용보다 더 저렴하다면 교체
-            if distance < country[arrival]:
-                country[arrival] = distance
-                heapq.heappush(heap, [now_distance, arrival])
-    return country
+        # 인접 노드 탐색
+        for next_position, next_weight in graph[now_position]:
+            # 현재 가중치 + 다음 가중치
+            total_weight = now_weight + next_weight
+            # 현재 가중치가 더 크다면 교체
+            if total_weight < dp[next_position]:
+                dp[next_position] = total_weight
+                # 다음 위치, weight 합계를 배열에다가 추가
+                heapq.heappush(heap, [next_position, total_weight])
 
+node = int(sys.stdin.readline())
+path = int(sys.stdin.readline())
+graph = [[] for _ in range(node + 1)]
+dp = [float("inf") for _ in range(node + 1)]
+for _ in range(path):
+    start, end, cost = map(int, sys.stdin.readline().split())
+    graph[start].append([end, cost])
+departure, arrival = map(int, sys.stdin.readline().split())
+dijkstra(departure)
+print(dp[arrival])
 
-INF = 1000000000  # 무한 값
-node = 6  # 정점의 갯수
-print(dijkstra(mycountry, "A"))
+"""
+1 2 2
+1 3 3
+1 4 1
+1 5 10
+2 4 2
+3 4 1
+3 5 1
+4 5 3
+"""
 ```
